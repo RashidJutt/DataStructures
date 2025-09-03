@@ -1,10 +1,9 @@
-﻿using DataStructure.Patterns;
+﻿using DataStructures.Patterns.PrefixSum;
 
 class Program
 {
     static void Main()
     {
-       //PrefixSumTest.SumRageTest();
-        ContiguousArrayTest.ContiguousArrayTestMethod();
+        PrefixSumTest.SubArraySumEqualKTest();
     }
 }
