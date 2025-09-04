@@ -4,6 +4,7 @@ class Program
 {
     static void Main()
     {
+        Console.WriteLine(3 % 2);
         PrefixSumTest.SubArraySumEqualKTest();
     }
 }

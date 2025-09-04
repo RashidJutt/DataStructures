@@ -44,48 +44,25 @@
 
         public int SubArraySumEqualK(int k)
         {
-            var sum = 0;
-            var subArrayCount = 0;
+            var map = new Dictionary<int, int>();
+            map[0] = 1;
+
+            int sum = 0;
+            int subArrayCount = 0;
+
             for (int i = 0; i < nums.Length; i++)
             {
                 sum += nums[i];
-                if (sum == k)
+
+                if (map.ContainsKey(sum - k))
                 {
-                    subArrayCount++;
-                }
-                else if (nums[i] == k)
-                {
-                    subArrayCount++;
-                }
-                else if ((sum > k && nums[i] < k))
-                {
-                    int j = 1;
-                    var reverseSum = sum;
-                    do
-                    {
-                        reverseSum += nums[i - j];
-                        if (reverseSum == k)
-                        {
-                            subArrayCount++;
-                        }
-                        j++;
-                    } while (reverseSum > k);
-                }
-                else if ((sum < k && nums[i] > k))
-                {
-                    int j = 1;
-                    var reverseSum = sum;
-                    do
-                    {
-                        reverseSum -= nums[i - j];
-                        if (reverseSum == k)
-                        {
-                            subArrayCount++;
-                        }
-                        j++;
-                    } while (reverseSum < k);
+                    subArrayCount += map[sum - k];
                 }
 
+                if (!map.ContainsKey(sum))
+                    map[sum] = 0;
+
+                map[sum]++;
             }
 
             return subArrayCount;
@@ -126,9 +103,9 @@
 
         public static void SubArraySumEqualKTest()
         {
-            var testArray = new int[] { 1, 2, 1, 2, 1 };
+            var testArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             var prefixSum = new PrefixSum(testArray);
-            var subArraysCount = prefixSum.SubArraySumEqualK(3);
+            var subArraysCount = prefixSum.SubArraySumEqualK(0);
             Console.WriteLine(subArraysCount);
         }
     }
