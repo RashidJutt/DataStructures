@@ -103,9 +103,9 @@
 
         public static void SubArraySumEqualKTest()
         {
-            var testArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            var testArray = new int[] { 1, 2, 3 };
             var prefixSum = new PrefixSum(testArray);
-            var subArraysCount = prefixSum.SubArraySumEqualK(0);
+            var subArraysCount = prefixSum.SubArraySumEqualK(3);
             Console.WriteLine(subArraysCount);
         }
     }
