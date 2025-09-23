@@ -68,6 +68,33 @@
             return subArrayCount;
         }
 
+        public int CountNumberOfNiceSubArrays(int k)
+        {
+            int subArrayCount = 0;
+            var modSumFrequencyMap = new Dictionary<int, int>();
+            var sum = 0;
+            modSumFrequencyMap[0] = 1;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var mod = nums[i] % 2;
+                sum += mod;
+                if (modSumFrequencyMap.ContainsKey(sum - k))
+                {
+                    subArrayCount += modSumFrequencyMap[sum - k];
+                }
+
+                if (!modSumFrequencyMap.ContainsKey(sum))
+                {
+                    modSumFrequencyMap[sum] = 0;
+                }
+
+
+                modSumFrequencyMap[sum]++;
+            }
+
+            return subArrayCount;
+        }
+
         private static int[] ReplaceZeroWithMinusOne(int[] nums)
         {
             for (int i = 0; i < nums.Length; i++)
@@ -106,6 +133,14 @@
             var testArray = new int[] { 1, 2, 3 };
             var prefixSum = new PrefixSum(testArray);
             var subArraysCount = prefixSum.SubArraySumEqualK(3);
+            Console.WriteLine(subArraysCount);
+        }
+
+        public static void CountNumberOfNiceSubArrays()
+        {
+            var testArray = new int[] { 2, 2, 2, 1, 2, 2, 1, 2, 2, 2 };
+            var prefixSum = new PrefixSum(testArray);
+            var subArraysCount = prefixSum.CountNumberOfNiceSubArrays(2);
             Console.WriteLine(subArraysCount);
         }
     }
