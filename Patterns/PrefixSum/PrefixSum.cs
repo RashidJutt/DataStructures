@@ -107,34 +107,36 @@
             return nums;
         }
 
-        public int PathSumIII(TreeNode root, int target)
+        public int PathSumIII(TreeNode root, int targetSum)
         {
-            var map = new Dictionary<int, int>();
-            var sum = 0;
+            if (root == null) return 0;
+            var map = new Dictionary<long, int>();
+            map[0] = 1;
             var numberOfPath = 0;
-            var stack = new Stack<TreeNode>();
-            stack.Push(root);
+            var sum = 0;
+            DepthFirstSearch(root, sum, map, ref numberOfPath, targetSum);
+            return numberOfPath;
+        }
 
-            while (stack.Count > 0)
+        private static void DepthFirstSearch(TreeNode root, long sum, Dictionary<long, int> map, ref int numberOfPath, int targetSum)
+        {
+            sum += root.val;
+
+            if (map.ContainsKey(sum - targetSum))
             {
-                root = stack.Pop();
-                if (root.Value == null) continue;
-
-                sum += root.Value ?? 0;
-                if (map.ContainsKey(sum - target))
-                {
-                    numberOfPath += map[sum - target];
-                }
-
-                if (!map.ContainsKey(sum))
-                    map[sum] = 0;
-                map[sum]++;
-
-                if (root.Right != null) stack.Push(root.Right);
-                if (root.Left != null) stack.Push(root.Left);
+                numberOfPath += map[sum - targetSum];
             }
 
-            return numberOfPath;
+            if (!map.ContainsKey(sum))
+                map[sum] = 0;
+            map[sum]++;
+
+            if (root.left != null) DepthFirstSearch(root.left, sum, map, ref numberOfPath, targetSum);
+            if (root.right != null) DepthFirstSearch(root.right, sum, map, ref numberOfPath, targetSum);
+
+            map[sum]--;
+            if (map[sum] == 0)
+                map.Remove(sum);
         }
     }
 
@@ -176,36 +178,30 @@
 
         public static void PathSumIIITest()
         {
-            TreeNode root = new TreeNode(10);
-            root.Left = new TreeNode(5);
-            root.Right = new TreeNode(-3);
+            TreeNode root = new TreeNode(1000000000);
+            root.left = new TreeNode(1000000000);
 
-            root.Left.Left = new TreeNode(3);
-            root.Left.Right = new TreeNode(2);
+            root.left.left = new TreeNode(294967296);
 
-            root.Right.Left = new TreeNode(null);
-            root.Right.Right = new TreeNode(11);
+            root.left.left.left = new TreeNode(1000000000);
 
-            root.Left.Left.Left = new TreeNode(3);
-            root.Left.Left.Right = new TreeNode(-2);
+            root.left.left.left.left = new TreeNode(1000000000);
 
-            root.Left.Right.Left = new TreeNode(null);
-            root.Left.Right.Right = new TreeNode(1);
-
+            root.left.left.left.left.left = new TreeNode(1000000000);
             var prefixSum = new PrefixSum(new int[] { });
-            var numberOfPath = prefixSum.PathSumIII(root, 8);
+            var numberOfPath = prefixSum.PathSumIII(root, 0);
             Console.WriteLine(numberOfPath);
         }
     }
 
     public class TreeNode
     {
-        public TreeNode(int? value)
+        public TreeNode(int value)
         {
-            Value = value;
+            val = value;
         }
-        public int? Value;
-        public TreeNode? Left;
-        public TreeNode? Right;
+        public int val;
+        public TreeNode? left;
+        public TreeNode? right;
     }
 }
