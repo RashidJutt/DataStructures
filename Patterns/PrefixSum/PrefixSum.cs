@@ -106,6 +106,36 @@
             }
             return nums;
         }
+
+        public int PathSumIII(TreeNode root, int target)
+        {
+            var map = new Dictionary<int, int>();
+            var sum = 0;
+            var numberOfPath = 0;
+            var stack = new Stack<TreeNode>();
+            stack.Push(root);
+
+            while (stack.Count > 0)
+            {
+                root = stack.Pop();
+                if (root.Value == null) continue;
+
+                sum += root.Value ?? 0;
+                if (map.ContainsKey(sum - target))
+                {
+                    numberOfPath += map[sum - target];
+                }
+
+                if (!map.ContainsKey(sum))
+                    map[sum] = 0;
+                map[sum]++;
+
+                if (root.Right != null) stack.Push(root.Right);
+                if (root.Left != null) stack.Push(root.Left);
+            }
+
+            return numberOfPath;
+        }
     }
 
     public static class PrefixSumTest
@@ -143,5 +173,39 @@
             var subArraysCount = prefixSum.CountNumberOfNiceSubArrays(2);
             Console.WriteLine(subArraysCount);
         }
+
+        public static void PathSumIIITest()
+        {
+            TreeNode root = new TreeNode(10);
+            root.Left = new TreeNode(5);
+            root.Right = new TreeNode(-3);
+
+            root.Left.Left = new TreeNode(3);
+            root.Left.Right = new TreeNode(2);
+
+            root.Right.Left = new TreeNode(null);
+            root.Right.Right = new TreeNode(11);
+
+            root.Left.Left.Left = new TreeNode(3);
+            root.Left.Left.Right = new TreeNode(-2);
+
+            root.Left.Right.Left = new TreeNode(null);
+            root.Left.Right.Right = new TreeNode(1);
+
+            var prefixSum = new PrefixSum(new int[] { });
+            var numberOfPath = prefixSum.PathSumIII(root, 8);
+            Console.WriteLine(numberOfPath);
+        }
+    }
+
+    public class TreeNode
+    {
+        public TreeNode(int? value)
+        {
+            Value = value;
+        }
+        public int? Value;
+        public TreeNode? Left;
+        public TreeNode? Right;
     }
 }
