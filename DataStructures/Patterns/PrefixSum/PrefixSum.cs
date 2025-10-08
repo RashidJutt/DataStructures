@@ -140,60 +140,6 @@
         }
     }
 
-    public static class PrefixSumTest
-    {
-        public static void SumRageTest()
-        {
-            var testArray = new int[] { -2, 0, 3, -5, 2, -1 };
-            var prefixSum = new PrefixSum(testArray);
-            Console.WriteLine(prefixSum.SumRange(0, 2));
-            Console.WriteLine(prefixSum.SumRange(2, 5));
-            Console.WriteLine(prefixSum.SumRange(0, 5));
-
-        }
-
-        public static void ContiguousArrayLengthTest()
-        {
-            var testArray = new int[] { 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1 };
-            var prefixSum = new PrefixSum(testArray);
-            var maxLength = prefixSum.FindMaxLength();
-            Console.WriteLine(maxLength);
-        }
-
-        public static void SubArraySumEqualKTest()
-        {
-            var testArray = new int[] { 1, 2, 3 };
-            var prefixSum = new PrefixSum(testArray);
-            var subArraysCount = prefixSum.SubArraySumEqualK(3);
-            Console.WriteLine(subArraysCount);
-        }
-
-        public static void CountNumberOfNiceSubArrays()
-        {
-            var testArray = new int[] { 2, 2, 2, 1, 2, 2, 1, 2, 2, 2 };
-            var prefixSum = new PrefixSum(testArray);
-            var subArraysCount = prefixSum.CountNumberOfNiceSubArrays(2);
-            Console.WriteLine(subArraysCount);
-        }
-
-        public static void PathSumIIITest()
-        {
-            TreeNode root = new TreeNode(1000000000);
-            root.left = new TreeNode(1000000000);
-
-            root.left.left = new TreeNode(294967296);
-
-            root.left.left.left = new TreeNode(1000000000);
-
-            root.left.left.left.left = new TreeNode(1000000000);
-
-            root.left.left.left.left.left = new TreeNode(1000000000);
-            var prefixSum = new PrefixSum(new int[] { });
-            var numberOfPath = prefixSum.PathSumIII(root, 0);
-            Console.WriteLine(numberOfPath);
-        }
-    }
-
     public class TreeNode
     {
         public TreeNode(int value)

@@ -1,0 +1,24 @@
+Data Structure Patterens.
+
+Prefix Sum: 
+Precomputed accumulated sum till index i. 
+Used to answer subarrays queries when we need portion of array accourding to required condition we first think in prefix sum direction. 
+We efficiently stored precomputed sums and then used them with mathical equation to identify required portions. 
+We build prefixSum data with O(n) and Query with O(1) complexity. 
+Example Problems: 
+Leet code 303: Range Sum Query – Immutable
+Prefix sum extentions: 
+Prefix with HashMap. 
+We combile Prefix sum with Hashmap we store computed sum along with index for frequescies accourding to problem and used that data to 
+identify required subarrays. 
+Example Problems: 
+Leet Code 560 Subarray sum equal to k. 
+Leet Code 1248 Count Number of nice sub arrays. sum of odd numbers - k already exist then its subarray that has k odd numbers.
+LC 930: Binary Subarrays With Sum
+LC 437: Path Sum III (tree version of subarray sum = k)
+Key to solve path sum problem is that we have to use depth first search and remove sums on end of path. 
+we store sums in same way and use recursion to treverse in tree and clean sums dictionary when one path is completed. 
+
+2D Prefix Sum. 
+
+ 
