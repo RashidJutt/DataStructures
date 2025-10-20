@@ -5,6 +5,9 @@ Precomputed accumulated sum till index i.
 Used to answer subarrays queries when we need portion of array accourding to required condition we first think in prefix sum direction. 
 We efficiently stored precomputed sums and then used them with mathical equation to identify required portions. 
 We build prefixSum data with O(n) and Query with O(1) complexity. 
+When we have to calculate length we start with sum[0]=-1; 
+When we have to calculate number of subarrays then we strart with sum[0]=1;
+
 Example Problems: 
 Leet code 303: Range Sum Query – Immutable
 Prefix sum extentions: 
