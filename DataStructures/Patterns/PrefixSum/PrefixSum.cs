@@ -118,6 +118,31 @@
             return numberOfPath;
         }
 
+        public int[] ProductOfArrayExceptSelf()
+        {
+            var length = nums.Length;
+            var sumOfMultiples = new int[length];
+            sumOfMultiples[length - 1] = nums[length - 1];
+            for (int i = length - 2; i >= 0; i--)
+            {
+                sumOfMultiples[i] += nums[i] * sumOfMultiples[i + 1];
+            }
+
+            for (int i = 0, j = length - 1; j >= 0; j--, i++)
+            {
+                if (i + 1 >= length)
+                {
+                    nums[i] = sumOfMultiples[i];
+                }
+                else
+                {
+                    nums[i] = sumOfMultiples[i] - sumOfMultiples[i + 1];
+                }
+            }
+
+            return nums;
+        }
+
         private static void DepthFirstSearch(TreeNode root, long sum, Dictionary<long, int> map, ref int numberOfPath, int targetSum)
         {
             sum += root.val;

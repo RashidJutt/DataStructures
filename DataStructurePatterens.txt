@@ -20,5 +20,14 @@ Key to solve path sum problem is that we have to use depth first search and remo
 we store sums in same way and use recursion to treverse in tree and clean sums dictionary when one path is completed. 
 
 2D Prefix Sum. 
+We first compute prefix sum of complete metrix that is if we are at row 1 and col 1 then sum of row 0, row 1, col 0, col 1 is prefix at 1,1.
+we have formula to calculate prefix is matrix[r][c] + top + left- diagnal.
+
+then we compute Region sum with formuls , Prefix(r2,c2) - Prefix Sum (r1-1,c2) - Prefix Sum (r2,c1-1) + Prefix Sum ( r1-1,c1-1);
+
+using two dimential array is faster then dictionary and using jagged array is faster then two dimentional array. 
+we can also calculate prefix sum with calculating row sum method. previous row current row matrix row and we calculate sum by combining previous row sum + current row sum 
+
+
 
  

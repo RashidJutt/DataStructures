@@ -69,5 +69,14 @@ namespace DataStructureTests
 
             Assert.That(numberOfPath, Is.EqualTo(target));
         }
+
+        [Test]
+        [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 24, 12, 8, 6 })]
+        public void ProductOfArrayExceptSelf_ShouldReturnValidArray(int[] nums, int[] expectedArray)
+        {
+            var prefixSum = new PrefixSum(nums);
+            var outputArray = prefixSum.ProductOfArrayExceptSelf();
+            Assert.That(outputArray, Is.EquivalentTo(expectedArray));
+        }
     }
 }
