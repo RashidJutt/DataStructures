@@ -31,6 +31,11 @@ then we compute Region sum with formuls , Prefix(r2,c2) - Prefix Sum (r1-1,c2) -
 using two dimential array is faster then dictionary and using jagged array is faster then two dimentional array. 
 we can also calculate prefix sum with calculating row sum method. previous row current row matrix row and we calculate sum by combining previous row sum + current row sum 
 
+Prefix and Sufix. we calculated from left to right and right to left then perform operation on it 
+Key here is that we not create seperate array for sufix we just store sufix sum in variable and use it. 
+Example 238 product of array except self. 
+
+
 
 
  

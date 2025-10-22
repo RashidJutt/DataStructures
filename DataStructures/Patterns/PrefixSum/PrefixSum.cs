@@ -120,27 +120,25 @@
 
         public int[] ProductOfArrayExceptSelf()
         {
-            var length = nums.Length;
-            var sumOfMultiples = new int[length];
-            sumOfMultiples[length - 1] = nums[length - 1];
-            for (int i = length - 2; i >= 0; i--)
+            int n = nums.Length;
+            int[] result = new int[n];
+
+            // Step 1: Build prefix products in result
+            result[0] = 1;
+            for (int i = 1; i < n; i++)
             {
-                sumOfMultiples[i] += nums[i] * sumOfMultiples[i + 1];
+                result[i] = result[i - 1] * nums[i - 1];
             }
 
-            for (int i = 0, j = length - 1; j >= 0; j--, i++)
+            // Step 2: Apply suffix product on the fly
+            int suffix = 1;
+            for (int i = n - 1; i >= 0; i--)
             {
-                if (i + 1 >= length)
-                {
-                    nums[i] = sumOfMultiples[i];
-                }
-                else
-                {
-                    nums[i] = sumOfMultiples[i] - sumOfMultiples[i + 1];
-                }
+                result[i] *= suffix;
+                suffix *= nums[i];
             }
 
-            return nums;
+            return result;
         }
 
         private static void DepthFirstSearch(TreeNode root, long sum, Dictionary<long, int> map, ref int numberOfPath, int targetSum)
