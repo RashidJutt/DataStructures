@@ -123,14 +123,12 @@
             int n = nums.Length;
             int[] result = new int[n];
 
-            // Step 1: Build prefix products in result
             result[0] = 1;
             for (int i = 1; i < n; i++)
             {
                 result[i] = result[i - 1] * nums[i - 1];
             }
 
-            // Step 2: Apply suffix product on the fly
             int suffix = 1;
             for (int i = n - 1; i >= 0; i--)
             {
@@ -141,6 +139,26 @@
             return result;
         }
 
+        public int LongestSubArraySumEqualToK(int k)
+        {
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            map[0] = -1;
+            var maxLength = 0;
+            var sum = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                sum += nums[i];
+                if (map.ContainsKey(sum - k))
+                {
+                    maxLength = Math.Max(maxLength, i - map[sum - k]);
+                }
+                else
+                {
+                    map[sum] = i;
+                }
+            }
+            return maxLength;
+        }
         private static void DepthFirstSearch(TreeNode root, long sum, Dictionary<long, int> map, ref int numberOfPath, int targetSum)
         {
             sum += root.val;

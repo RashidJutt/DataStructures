@@ -13,7 +13,8 @@ Leet code 303: Range Sum Query – Immutable
 Prefix sum extentions: 
 Prefix with HashMap. 
 We combile Prefix sum with Hashmap we store computed sum along with index for frequescies accourding to problem and used that data to 
-identify required subarrays. 
+identify required subarrays.
+When we have to calculate number of subarrays then we store sum count as value when we have to find max length then we store index as value. 
 Example Problems: 
 Leet Code 560 Subarray sum equal to k. 
 Leet Code 1248 Count Number of nice sub arrays. sum of odd numbers - k already exist then its subarray that has k odd numbers.
@@ -33,6 +34,7 @@ we can also calculate prefix sum with calculating row sum method. previous row c
 
 Prefix and Sufix. we calculated from left to right and right to left then perform operation on it 
 Key here is that we not create seperate array for sufix we just store sufix sum in variable and use it. 
+We Start with 1 on first index of prefix or sufix and multiply next index with previous one and after calculation prefix and sufix we multiply them to get product sum with out self.
 Example 238 product of array except self. 
 
 
