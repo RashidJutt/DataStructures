@@ -159,6 +159,46 @@
             }
             return maxLength;
         }
+
+        public bool ContinuousSubArraySum(int k)
+        {
+            // ReplaceZeroWithOne(nums);
+            Dictionary<int, int> map = new Dictionary<int, int>();
+            map[0] = -1;
+            var sum = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var mod = nums[i] % k;
+                sum += mod;
+                if (nums[i] == 0)
+                {
+                    sum += k;
+                }
+                if (map.ContainsKey(sum % k))
+                {
+                    if (i - map[sum % k] >= 2)
+                        return true;
+                }
+                else
+                {
+                    map[sum] = i;
+                }
+            }
+            return false;
+        }
+
+        private void ReplaceZeroWithOne(int[] nums)
+        {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == 0)
+                {
+                    nums[i] = 1;
+                }
+            }
+        }
+
         private static void DepthFirstSearch(TreeNode root, long sum, Dictionary<long, int> map, ref int numberOfPath, int targetSum)
         {
             sum += root.val;
