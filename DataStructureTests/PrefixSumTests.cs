@@ -69,5 +69,26 @@ namespace DataStructureTests
 
             Assert.That(numberOfPath, Is.EqualTo(target));
         }
+
+        [Test]
+        [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 24, 12, 8, 6 })]
+        public void ProductOfArrayExceptSelf_ShouldReturnValidArray(int[] nums, int[] expectedArray)
+        {
+            var prefixSum = new PrefixSum(nums);
+            var outputArray = prefixSum.ProductOfArrayExceptSelf();
+            Assert.That(outputArray, Is.EquivalentTo(expectedArray));
+        }
+
+        [Test]
+        [TestCase(new int[] { 10, 5, 2, 7, 1, -10 }, 15, 6)]
+        [TestCase(new int[] { -5, 8, -14, 2, 4, 12 }, -5, 5)]
+        public void LongestSubArraySumEqualToK_ShouldReturnExpectedOutput(int[] nums, int k, int expected)
+        {
+            var prefixSum = new PrefixSum(nums);
+
+            var longestSubArrayLength = prefixSum.LongestSubArraySumEqualToK(k);
+
+            Assert.That(longestSubArrayLength, Is.EqualTo(expected));
+        }
     }
 }
